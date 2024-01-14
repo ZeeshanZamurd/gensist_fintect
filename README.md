@@ -2,7 +2,7 @@
 
 ## Schema Diagram
 
-![Schema Diagram](diagram/schem-diagram.png)
+![Schema Diagram](diagram/schem-diagram.PNG)
 
 ## Prerequisites
 
