@@ -31,7 +31,7 @@ import { BeneficiaryModule } from 'src/beneficiary/beneficiary.module';
     }),
     UsersModule,
     AuthModule,
-    // AccountModule,
+    AccountModule,
     TransactionModule,
     BeneficiaryModule,
   ],

@@ -1,22 +1,25 @@
-
 # Project Configurations
 
-schema diagram: schema diagram present inside diagram directory
+## Schema Diagram
 
-required node version : 18
-required nest-cli version : 10.3.0
+![Schema Diagram](diagram/schem-diagram.PNG)
 
-npm ci: first of all we need to install packages by using 'npm ci' command
+## Prerequisites
 
-env : env.dist is available please use it to create env file by providing required credentials
+- Node.js version: 18
+- Nest.js CLI version: 10.3.0
 
+## Installation
 
-databse: before you run nest start --watch command make it sure database with name specified in postgres 
+1. **Clone the repository:**
 
-nest start --watch: use this command to to run project 
-
-run test : npm run test (unit test are available for user module)
-
-import postman collection to your postman available in project repo
-
-you are good to go
+   ```bash
+   git clone https://github.com/ZeeshanZamurd/gensist_fintect.git
+   cd your-repo
+2.   npm ci
+3. env : env.dist is available please use it to create env file by providing required credentials
+4. databse: before you run nest start --watch command make it sure database with name fintech specified in postgres
+5. nest start --watch: use this command to to run project
+6. run test : npm run test (to run unit test)
+7. import postman collection to your postman available in project repo
+8. you are good to go
