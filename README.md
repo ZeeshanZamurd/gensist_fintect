@@ -14,7 +14,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/ZeeshanZamurd/gensist_fintect.git
    cd your-repo
 2.   npm ci
 3. env : env.dist is available please use it to create env file by providing required credentials
