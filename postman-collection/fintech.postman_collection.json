@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "937eb0e8-e559-44d8-909d-309ae8d4681b",
+		"name": "fintech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18487970"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"tester\",\r\n    \"email\":\"new@gmail.com\",\r\n    \"password\":\"roha@1234567\",\r\n    \"accountType\": \"SAVING\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/users",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"new@gmail.com\",\r\n    \"password\":\"roha@1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/auth/login",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/users/69cf03f9-cf69-4c41-97ac-2fb2b70423e1",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"users",
+								"69cf03f9-cf69-4c41-97ac-2fb2b70423e1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "get-my-account-details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/account",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "depost money",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"balance\": 3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/account/9b96411f-f4f1-4306-b8d9-958f9b7ddce3",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"account",
+								"9b96411f-f4f1-4306-b8d9-958f9b7ddce3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "benificaries",
+			"item": [
+				{
+					"name": "add-benificary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    //userid is of benificary and accountid is of current user\r\n\r\n    \"userId\":\"f9fda54f-50b3-4d91-b248-ecb7cff5e998\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/beneficary",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"beneficary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-my-all-benificary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/beneficary",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"beneficary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-benificary",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/beneficary/799e4631-b9cb-453e-8606-16b4496ea982",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"beneficary",
+								"799e4631-b9cb-453e-8606-16b4496ea982"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    //this is userid of benificary\r\n    \"userId\":\"f9fda54f-50b3-4d91-b248-ecb7cff5e998\",\r\n    \"amount\": 110\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/transaction",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-all-transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL}}:{{PORT}}/transaction",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5Y2YwM2Y5LWNmNjktNGM0MS05N2FjLTJmYjJiNzA0MjNlMSIsInVzZXJOYW1lIjoidGVzdGVyIiwicm9sZSI6IkFDT1VOVF9IT0xERVIiLCJlbWFpbCI6Im5ld0BnbWFpbC5jb20iLCJhY2Nlc3NUb2tlbiI6IiIsImlhdCI6MTcwNTIzODAwOCwiZXhwIjoxNzA1MjQxNjA4fQ.s-28mqMa8ju3gwzfMMzFa8pkhVWuh_7FasroTL0HMrs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "LOCAL",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "PORT",
+			"value": "3000",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,156 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+// import { AccountService } from '../account/account.service';
+// import { CreateUserDto } from './dto/create-user.dto';
+// import { User } from './entities/user.entity';
+// import { Account } from '../account/entities/account.entity';
+// import { ACCOUNT_TYPE } from '../common/enum/account-type.enum';
+// import { SaveOptions } from 'typeorm';
+import { USER_ROLE } from '../common/enum/user-role.enum';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
+// import { TypeOrmModule } from '@nestjs/typeorm';
+// import { AccountModule } from '../account/account.module';
+// import { UsersModule } from './users.module';
+
+describe('UsersController', () => {
+  let usersController: UsersController;
+  let usersService: UsersService;
+  let model: Repository<User>;
+  // let accountService: AccountService;
+
+  const createdUser = {
+    id: 'd91a0de5-bee4-4a1f-b3b5-f7709f13d539',
+    userName: '',
+    email: 'testing@gmail.com',
+    password: '$2b$10$HwlILgBtFy2/IWkK3APWPudx1NbMswNC7U6TLvZikpbcEFHEtfzxW', // Mock hashed password
+    Role: USER_ROLE.ACOUNT_HOLDER,
+  };
+  const mockUsersService = {
+    create: jest.fn().mockResolvedValueOnce(createdUser),
+    // findAll,
+    // fineOne,
+  };
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [UsersController],
+      providers: [
+        {
+          provide: UsersService,
+          useValue: mockUsersService,
+        },
+      ],
+    }).compile();
+
+    usersController = module.get<UsersController>(UsersController);
+    usersService = module.get<UsersService>(UsersService);
+    // accountService = module.get<AccountService>(AccountService);
+  });
+
+  it('should be defined', () => {
+    expect(usersController).toBeDefined();
+  });
+
+  // describe('create', () => {
+  //   it('should create a user and associated account', async () => {
+  //     // Mock data
+  //     const createUserDto: CreateUserDto = {
+  //       userName: 'john_doe',
+  //       email: 'john.doe@example.com',
+  //       password: 'password123',
+  //       accountType: ACCOUNT_TYPE.SAVING,
+  //     };
+
+  //     const createdAccount: Account = {
+  //       id: '1',
+  //       accountType: ACCOUNT_TYPE.SAVING,
+  //       userId: '1',
+  //       balance: 0, // Mock balance
+  //       user: createdUser, // Mock the user relationship
+  //       save: jest.fn(),
+  //       remove: jest.fn(),
+  //       hasId: jest.fn(),
+  //       softRemove: async function (options?: SaveOptions): Promise<Account> {
+  //         throw new Error('Function not implemented.');
+  //       },
+  //       recover: async function (options?: SaveOptions): Promise<Account> {
+  //         throw new Error('Function not implemented.');
+  //       },
+  //       reload: async function (): Promise<void> {
+  //         throw new Error('Function not implemented.');
+  //       },
+  //     };
+
+  //     // Mock the service methods
+  //     jest.spyOn(usersService, 'create').mockResolvedValueOnce(createdUser);
+  //     jest.spyOn(accountService, 'create').mockResolvedValueOnce(createdAccount);
+
+  //     // Call the controller method
+  //     const result = await usersController.create(createUserDto);
+
+  //     // Assert the result
+  //     expect(result).toEqual({
+  //       ...createdUser,
+  //       account: createdAccount,
+  //     });
+
+  //     // Verify that service methods were called with the correct parameters
+  //     expect(usersService.create).toHaveBeenCalledWith(createUserDto);
+  //     expect(accountService.create).toHaveBeenCalledWith({
+  //       accountType: createUserDto.accountType,
+  //       userId: createdUser.id,
+  //     });
+  //   });
+  // });
+});
+
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+import { USER_ROLE } from '../common/enum/user-role.enum';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
+import { JwtModule } from '@nestjs/jwt';
+import { AccountModule } from '../account/account.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from '../account/entities/account.entity';
+
+describe('UsersController', () => {
+  let usersController: UsersController;
+  let usersService: UsersService;
+  let model: Repository<User>;
+
+  const createdUser = {
+    id: 'd91a0de5-bee4-4a1f-b3b5-f7709f13d539',
+    userName: '',
+    email: 'testing@gmail.com',
+    password: '$2b$10$HwlILgBtFy2/IWkK3APWPudx1NbMswNC7U6TLvZikpbcEFHEtfzxW', // Mock hashed password
+    Role: USER_ROLE.ACOUNT_HOLDER,
+  };
+  const mockUsersService = {
+    create: jest.fn().mockResolvedValueOnce(createdUser),
+  };
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [JwtModule, AccountModule, TypeOrmModule.forFeature([Account])],
+      controllers: [UsersController],
+      providers: [
+        {
+          provide: UsersService,
+          useValue: mockUsersService,
+        },
+      ],
+    }).compile();
+
+    usersController = module.get<UsersController>(UsersController);
+    usersService = module.get<UsersService>(UsersService);
+  });
+
+  it('should be defined', () => {
+    expect(usersController).toBeDefined();
+  });
+});
